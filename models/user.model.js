@@ -37,14 +37,32 @@ const userSchema = new mongoose.Schema({
   },
   userType: {
     type: String,
+    enum: ["CUSTOMER", "ENGINEER", "ADMIN"],
     required: true,
     default: "CUSTOMER",
   },
   userStatus: {
     type: String,
+    enum: ["PENDING", "APPROVED", "REJECTED"],
     required: true,
-    default: "APPROVED",
+    default: function () {
+      if (this.userType === "CUSTOMER") {
+        return "APPROVED";
+      } else {
+        return "PENDING";
+      }
+    },
   },
+});
+
+userSchema.pre("save", async function (next) {
+  const existingAdminCount = await this.constructor.countDocuments({
+    userType: "ADMIN",
+  });
+  if (existingAdminCount === 0 && this.userType === "ADMIN") {
+    this.userStatus = "APPROVED";
+  }
+  next();
 });
 
 module.exports = mongoose.model("User", userSchema);

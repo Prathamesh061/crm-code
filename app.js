@@ -65,7 +65,7 @@ async function init() {
       userId: "admin",
       email: "prathmeshlakhpaty@gmail.com",
       userType: "ADMIN",
-      password: bcrypt.hashSync("admin@123", 8),
+      password: bcrypt.hashSync("Admin@123", 8),
     });
     console.log(user);
   } catch (e) {
