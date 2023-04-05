@@ -53,6 +53,14 @@ const userSchema = new mongoose.Schema({
       }
     },
   },
+  ticketsCreated: {
+    type: [mongoose.SchemaTypes.ObjectId],
+    ref: "Ticket",
+  },
+  ticketsAssigned: {
+    type: [mongoose.SchemaTypes.ObjectId],
+    ref: "Ticket",
+  },
 });
 
 userSchema.pre("save", async function (next) {
