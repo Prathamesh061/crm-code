@@ -5,7 +5,7 @@ const constants = require("../utils/constants");
 
 verifyToken = (req, res, next) => {
   let token = req.headers["authorization"];
-  console.log(token);
+ 
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",

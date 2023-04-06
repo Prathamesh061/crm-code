@@ -15,7 +15,7 @@ exports.findAll = async (req, res) => {
   let userStatusReq = req.query.userStatus;
   let userNameReq = req.query.name;
 
-  var users;
+  let users;
   if (userNameReq) {
     try {
       users = await User.find({
@@ -119,6 +119,7 @@ exports.update = async (req, res) => {
         new: true,
       }
     ).exec();
+    console.log(user);
     res.status(200).send({
       message: `User record has been updated successfully`,
       user,

@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const constants = require("../utils/constants");
-var bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const config = require("../configs/auth.config");
 
 /**
@@ -79,7 +79,7 @@ exports.signin = async (req, res) => {
       message: "Invalid Password!",
     });
   }
-  var token = jwt.sign({ id: user.userId }, config.secret, {
+  const token = jwt.sign({ id: user.userId }, config.secret, {
     expiresIn: 86400, // 24 hours
   });
 

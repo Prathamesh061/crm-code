@@ -86,12 +86,12 @@ validateUserStatusAndUserType = async (req, res, next) => {
   }
   //validting the userStatus
   const userStatus = req.body.userStatus;
-  const userSatuses = [
+  const userStatuses = [
     constants.userStatus.pending,
     constants.userStatus.approved,
     constants.userStatus.rejected,
   ];
-  if (userStatus && !userSatuses.includes(userStatus)) {
+  if (userStatus && !userStatuses.includes(userStatus)) {
     res.status(400).send({
       message:
         "UserStatus provided is invalid. Possible values PENDING | APPROVED | REJECTED ",

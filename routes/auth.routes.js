@@ -1,16 +1,16 @@
 const authController = require("../controllers/auth.controller");
-const validateRequest = require("../middlewares/verifyUserReqBody");
+const { verifyUserReqBody } = require("../middlewares");
 
 module.exports = function (app) {
   app.post(
     "/crm/api/v1/auth/signup",
-    [validateRequest.validateUserRequestBody],
+    [verifyUserReqBody.validateUserRequestBody],
     authController.signup
   );
 
   app.post(
     "/crm/api/v1/auth/signin",
-    [validateRequest.validateUserSigninBody],
+    [verifyUserReqBody.validateUserSigninBody],
     authController.signin
   );
 };
