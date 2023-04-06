@@ -4,7 +4,7 @@
  * defined in the User Controller
  */
 const User = require("../models/user.model");
-const responseConverter = require("../utils/responseConverter");
+const objectConverter = require("../utils/objectConverter");
 
 /**
  * Fetch the list of users based on the filter of Status/UserType/Name
@@ -77,7 +77,7 @@ exports.findAll = async (req, res) => {
       });
     }
   }
-  res.status(200).send(responseConverter.userResponse(users));
+  res.status(200).send(objectConverter.userResponse(users));
 };
 
 /**
@@ -91,7 +91,7 @@ exports.findById = async (req, res) => {
   });
 
   if (user) {
-    res.status(200).send(responseConverter.userResponse(user));
+    res.status(200).send(objectConverter.userResponse(user));
   } else {
     res.status(200).send({
       message: `User with this id [${userIdReq}] is not present`,
